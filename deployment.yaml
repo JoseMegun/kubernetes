@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enriqueta
+  namespace: 04josecama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enriqueta
+  template:
+    metadata:
+      labels:
+        app: enriqueta
+    spec:
+      containers:
+      - name: enriqueta
+        image: jmegun/enriqueta-be:latest
+        resources:
+          requests:
+            cpu: "125m"
+            memory: "128Mi"
+          limits:
+            cpu: "300m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          value: mongodb+srv://admin:1234@mariaenriqueta.f47y4yu.mongodb.net/?retryWrites=true&w=majority&appName=MariaEnriqueta
