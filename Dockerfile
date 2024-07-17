@@ -8,8 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 COPY . .
 
-# Instalar las dependencias y construir la aplicación
+# Instalar las dependencias
 RUN npm install
+
+# Construir la aplicación para producción
 RUN npm run build --prod
 
 # Etapa 2: Servir la aplicación
